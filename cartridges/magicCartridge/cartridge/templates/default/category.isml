@@ -1,0 +1,16 @@
+ 
+  <style>
+    .red {
+    	   color: red;
+    	}
+       .blue{
+           color: blue;
+       }
+    </style>
+ <h1 class="red">Category</h1>
+
+ <h3>=>${pdict.category.displayName}</h3>
+ <h2 class="blue">Products</h2>
+ <isloop status="index" items="${pdict.products}" var="product">
+      <isinclude template="partialProduct.isml">
+ </isloop>

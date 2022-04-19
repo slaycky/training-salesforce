@@ -1,0 +1,35 @@
+<html>
+ <style>
+    	.red {
+    	   color: red;
+    	}
+       .blue{
+           color: blue;
+       }
+    </style>
+ <h1>Explore</h1>
+ <isprint value="${pdict.page}" encoding="off"/>
+  
+ 
+
+    <h1>Create Variable</h1>
+    <isset name="AddressName" value="Create variables in isml and access them">
+    <isprint value="#AddressName#" encoding="off"/>
+
+   <h1>Use local include</h1>
+    <isinclude template="partialProduct.isml">
+
+    <h1>Use conditions and loops</h1>
+ <isloop status="index" items="${pdict.loopArray}" var="lineItem">
+    <isif condition="${index.index %2 == 0}">
+        <span class="red">   <isprint value="${index.index}" encoding="off"/> <isprint value="${lineItem}" encoding="off"/></span>
+       <iselse>
+        <span class="blue">  <isprint value="${index.index}" encoding="off"/> <isprint value="${lineItem}" encoding="off"/></span>
+  
+    </isif>
+ 
+ </isloop>
+<isscript>
+    out.print( JSON.stringify(pdict.Basket) );
+</isscript>
+</html>

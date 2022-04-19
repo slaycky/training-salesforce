@@ -1,0 +1,23 @@
+<div class="container product-detail product-wrapper" data-pid="${product.id}">
+    <div class="row">
+        <div class="col-12">
+            <!-- Product Name -->
+            <div class="row">
+                <div class="d-md-none col-sm-12">
+                    <h1 class="product-name">${product.productName}</h1>
+                </div>
+            </div>
+             <div class="row">
+                <div class="d-md-none col-sm-12">
+                    <label>Descriçao: </label>${product.pageDescription}
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-md-none col-sm-12">
+                    <label>Rating: </label>${product.rating}
+                </div>
+            </div>
+            <a href="${product.selectedProductUrl}">Acessar produto</a>
+        </div>
+    </div>
+</div>
