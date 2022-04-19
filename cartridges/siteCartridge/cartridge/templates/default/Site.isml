@@ -24,8 +24,8 @@
     </a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a class="menu-link" href="$httpsUrl('Search-Show', 'cgid', 'K')$"> HOME</a></li>
-        <li><a class="menu-link"  href="${Url('Search-Show','cgid','mens')}">STYLE DEMO</a></li> 
+        <li class="active"><a class="menu-link" href="${URLUtils.url('Magic-Show')}"> HOME</a></li>
+        <li><a class="menu-link"  href="home">STYLE DEMO</a></li> 
         <li><a class="menu-link" href="home"> FULL WIDTH</a></li>
         <li><a class="menu-link" href="home"> DROPDOWN</a></li>
         <li><a class="menu-link" href="home"> PORTFOLIO</a></li>
