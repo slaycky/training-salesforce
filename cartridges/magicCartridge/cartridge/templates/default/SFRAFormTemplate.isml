@@ -1,0 +1,24 @@
+<!--- TEMPLATENAME: helloform.isml --->
+ <!--- <isscript>
+var assets = require('*/cartridge/scripts/assets.js');
+assets.addCss('/css/helloform.css'); 
+assets.addJs('/js/helloform.js'); </isscript>--->
+
+<div class="hero slant-down login-banner">
+	<h1>SFRA Hello World Form</h1>
+</div>
+
+<!--- --->
+<div class="card">
+	<form action="${pdict.actionUrl}" class="login" method="POST"
+		name="SFRAHelloForm">
+
+		<div class="form-group required">
+			<label>  ${Resource.msg('label.input.profile.nickname', 'forms', null)}</label> <input type="input" id="nickname"
+				class="form-control" name="nickname">
+		</div>
+
+		<button type="submit" class="btn btn-block btn-primary">Submit</button>
+		<button type="submit" class="btn btn-block btn-primary">Cancel</button>
+	</form>
+</div>

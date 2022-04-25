@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<field formid="firstname" label="contact.firstname.label" type="string" mandatory="true" binding="firstName" max-length="50"/>
+	<field formid="lastname" label="contact.lastname.label" type="string" mandatory="true" binding="lastName" max-length="50"/>
+	<field formid="email" label="contact.email.label" type="string" mandatory="true"  parse-error="contactus.email.parse-error" />	
+</form>
