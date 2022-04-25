@@ -1,63 +1,43 @@
-<form action="${URLUtils.url('Magic-SaveProfile')}" class="edit-profile-preference-form" method="POST" <isprint value="${pdict.profileForm.attributes}" encoding="off" />>
+<form action="${URLUtils.url('EditPreferences-SaveProfile')}" class="edit-profile-preference-form" method="POST" <isprint value="${pdict.profileForm.attributes}" encoding="off" />>
 
-    <div class="form-group
-        <isif condition="${pdict.profileForm.customer.firstname.mandatory === true}">required</isif>">
-        <label class="form-control-label" for="firstName">
-            <isprint value="${pdict.profileForm.customer.firstname.label}" encoding="htmlcontent" />
-        </label>
-        <input type="text" class="form-control" id="firstName"  name="firstName"
-            <isprint value="${pdict.profileForm.customer.firstname.attributes}" encoding="off" />>
-        <div class="invalid-feedback"></div>
-    </div> 
-
-    <div class="form-group
-        <isif condition="${pdict.profileForm.customer.lastname.mandatory === true}">required</isif>">
-        <label class="form-control-label" for="lastName">
-            <isprint value="${pdict.profileForm.customer.lastname.label}" encoding="htmlcontent" />
-        </label>
-        <input type="text" class="form-control" id="lastName" name="lastName"
-            <isprint value="${pdict.profileForm.customer.lastname.attributes}" encoding="off" />>
-        <div class="invalid-feedback"></div>
-    </div>
-
-    <div class="form-group
-        <isif condition="${pdict.profileForm.customer.phone.mandatory === true}">required</isif>">
-        <label class="form-control-label" for="phone">
-            <isprint value="${pdict.profileForm.customer.phone.label}" encoding="htmlcontent" />
-        </label>
-        <input type="text" class="form-control" id="phone"  name="phone"
-            <isprint value="${pdict.profileForm.customer.phone.attributes}" encoding="off" />>
-        <div class="invalid-feedback"></div>
-    </div>
-
-    <div class="form-group
-        <isif condition="${pdict.profileForm.customer.email.mandatory === true}">required</isif>">
-        <label class="form-control-label" for="email">
-            <isprint value="${pdict.profileForm.customer.email.label}" encoding="htmlcontent" />
-        </label>
-        <input type="email" class="form-control" id="email" name="email"
-            <isprint value="${pdict.profileForm.customer.email.attributes}" encoding="off" />>
-        <div class="invalid-feedback"></div>
-    </div>
     <div class="form-group
         <isif condition="${pdict.profileForm.customer.preferences_allowSMS.mandatory === true}">required</isif>">
         <label class="form-control-label" for="email">
             <isprint value="${pdict.profileForm.customer.preferences_allowSMS.label}" encoding="htmlcontent" />
         </label>
-        <input type="checkbox" class="form-control" id="preferences_allowSMS" name="preferences_allowSMS"
-             <isif condition="${pdict.profileForm.customer.preferences_allowSMS.value === true}">checked="checked</isif>
-            <isprint value="${pdict.profileForm.customer.preferences_allowSMS.attributes}" encoding="off" />>
+        <select class="form-control" id="preferences_allowSMS" name="preferences_allowSMS" <isprint value="${pdict.profileForm.customer.preferences_allowSMS.attributes}">>
+           <option value="">Select one</option>
+            <option value="true"  <isif condition="${pdict.profileForm.customer.preferences_allowSMS.value === true}">selected</isif>>Yes</option>
+            <option value="false" <isif condition="${pdict.profileForm.customer.preferences_allowSMS.value === false}">selected</isif>>No </option>
+        </select>
         <div class="invalid-feedback"></div>
+        
     </div>
      <div class="form-group
         <isif condition="${pdict.profileForm.customer.preferences_allowEmail.mandatory === true}">required</isif>">
         <label class="form-control-label" for="email">
             <isprint value="${pdict.profileForm.customer.preferences_allowEmail.label}" encoding="htmlcontent" />
         </label>
-            <input type="checkbox" class="form-control"   id="preferences_allowEmail" name="preferences_allowEmail"
-            <isif condition="${pdict.profileForm.customer.preferences_allowEmail.value === true}">checked="checked</isif>
-            <isprint value="${pdict.profileForm.customer.preferences_allowEmail.attributes}" encoding="off" />>
-        <div class="invalid-feedback"></div>
+           <select class="form-control" id="preferences_allowEmail" name="preferences_allowEmail" <isprint value="${pdict.profileForm.customer.preferences_allowEmail.attributes}">>
+           <option value="">Select one</option>
+            <option value="true"  <isif condition="${pdict.profileForm.customer.preferences_allowEmail.value === true}">selected</isif>>Yes</option>
+            <option value="false" <isif condition="${pdict.profileForm.customer.preferences_allowEmail.value === false}">selected</isif>>No </option>
+        </select>
+   
+                <div class="invalid-feedback"></div>
+    </div>
+     <div class="form-group
+        <isif condition="${pdict.profileForm.customer.preferences_allowEmaiPromotional.mandatory === true}">required</isif>">
+        <label class="form-control-label" for="email">
+            <isprint value="${pdict.profileForm.customer.preferences_allowEmaiPromotional.label}" encoding="htmlcontent" />
+        </label>
+           <select class="form-control" id="preferences_allowEmaiPromotional" name="preferences_allowEmaiPromotional" <isprint value="${pdict.profileForm.customer.preferences_allowEmaiPromotional.attributes}">>
+           <option value="">Select one</option>
+            <option value="true"  <isif condition="${pdict.profileForm.customer.preferences_allowEmaiPromotional.value === true}">selected</isif>>Yes</option>
+            <option value="false" <isif condition="${pdict.profileForm.customer.preferences_allowEmaiPromotional.value === false}">selected</isif>>No </option>
+        </select>
+   
+                <div class="invalid-feedback"></div>
     </div>
     <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}"/>
     <div class="row">
@@ -86,4 +66,3 @@
 </form>
 
 
-<script src="${URLUtils.staticURL('/js/profile.js')}"></script>

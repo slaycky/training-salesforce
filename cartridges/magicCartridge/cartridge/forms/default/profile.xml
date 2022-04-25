@@ -67,6 +67,14 @@
 			missing-error="error.message.required"
 			parse-error="error.message.parse.preferences_allowEmail.profile.form"
 			type="string"/> 
+		<field 
+			formid="preferences_allowEmaiPromotional"
+			label="label.input.preferences_allowEmaiPromotional.profile"
+			mandatory="false"
+			missing-error="error.message.required"
+			parse-error="error.message.parse.preferences_allowEmaiPromotional.profile.form"
+			type="string"/> 
+
 
 		<field 
 			formid="addtoemaillist" 

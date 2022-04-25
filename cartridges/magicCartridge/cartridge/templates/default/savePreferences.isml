@@ -1,0 +1,3 @@
+
+<h1>Preferences Save with sucesss</h1>
+<a href="${URLUtils.url('EditPreferences-Start')}" class="btn btn-block btn-outline-primary">Back to Preferences</a>

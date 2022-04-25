@@ -10,35 +10,69 @@ server.get(
     csrfProtection.generateToken,
     userLoggedIn.validateLoggedIn,
     function (req, res, next) {
-        var template = "magic";
-        res.render(template);
+        var Resource = require("dw/web/Resource");
+        var CustomerMgr = require("dw/customer/CustomerMgr");
+        var customer = CustomerMgr.getCustomerByCustomerNumber(
+            req.currentCustomer.profile.customerNo
+        );
+        var profile = customer.getProfile();
+        var profileForm = server.forms.getForm("profile"); //gets the profile.xml form definition and converts it to a JSON object.
+        profileForm.clear(); //clears the JSON object
+        profileForm.customer.preferences_allowSMS.value =
+            profile.custom.preferences_allowSMS;
+        profileForm.customer.preferences_allowEmail.value =
+            profile.custom.preferences_allowEmail;
+        profileForm.customer.preferences_allowEmaiPromotional.value =
+            profile.custom.preferences_allowEmaiPromotional;
 
-        // var accountHelpers = require("*/cartridge/scripts/account/accountHelpers");
-
-        // var accountModel = accountHelpers.getAccountModel(req);
-        // var profileForm = server.forms.getForm("profile"); //gets the profile.xml form definition and converts it to a JSON object.
-        // profileForm.clear(); //clears the JSON object
-        // profileForm.customer.firstname.value = accountModel.profile.firstName; //copies data from one field to another
-        // profileForm.customer.lastname.value = accountModel.profile.lastName;
-        // profileForm.customer.phone.value = accountModel.profile.phone;
-        // profileForm.customer.email.value = accountModel.profile.email;
-        // res.render("account/profile", {
-        //     profileForm: profileForm, //adds the JSON object to the data for the template
-        //     breadcrumbs: [
-        //         {
-        //             htmlValue: Resource.msg("global.home", "common", null),
-        //             url: URLUtils.home().toString(),
-        //         },
-        //         {
-        //             htmlValue: Resource.msg(
-        //                 "page.title.myaccount",
-        //                 "account",
-        //                 null
-        //             ),
-        //             url: URLUtils.url("Account-Show").toString(),
-        //         },
-        //     ],
-        // });
+        res.render("account/profile", {
+            profileForm: profileForm, //adds the JSON object to the data for the template
+            breadcrumbs: [
+                {
+                    htmlValue: Resource.msg("global.home", "common", null),
+                    url: URLUtils.home().toString(),
+                },
+                {
+                    htmlValue: Resource.msg(
+                        "page.title.myaccount",
+                        "account",
+                        null
+                    ),
+                    url: URLUtils.url("Account-Show").toString(),
+                },
+            ],
+        });
         next();
     }
 );
+
+server.post(
+    "SaveProfile",
+    server.middleware.https,
+    csrfProtection.generateToken,
+    userLoggedIn.validateLoggedIn,
+    function (req, res, next) {
+        var Transaction = require("dw/system/Transaction");
+        var CustomerMgr = require("dw/customer/CustomerMgr");
+        var customer = CustomerMgr.getCustomerByCustomerNumber(
+            req.currentCustomer.profile.customerNo
+        );
+        var profile = customer.getProfile();
+
+        var allowSms = req.form.preferences_allowSMS;
+        var allowEmail = req.form.preferences_allowEmail;
+        var allowEmailPromotional = req.form.preferences_allowEmaiPromotional;
+
+        Transaction.wrap(function () {
+            profile.custom.preferences_allowSMS =
+                allowSms === "true" ? true : false;
+            profile.custom.preferences_allowEmail =
+                allowEmail === "true" ? true : false;
+            profile.custom.preferences_allowEmaiPromotional =
+                allowEmailPromotional === "true" ? true : false;
+        });
+        res.render("savePreferences");
+        next();
+    }
+);
+module.exports = server.exports();
