@@ -153,6 +153,7 @@ server.post("ContactResult", function (req, res, next) {
         lastname: lastname,
         email: email,
     });
+
     next();
 });
 
