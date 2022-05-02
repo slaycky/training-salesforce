@@ -1,5 +1,5 @@
+<iscache type = "relative" hour = "24" minute = "0">
 <isdecorate template="common/layout/page">
-<iscache type = "relative" hour = "24">
 
       <div class="hero slant-down account-image">
         <h1 class="page-title">${Resource.msg('label.profile.newsletter','forms',null)}</h1>
